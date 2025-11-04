@@ -11,11 +11,21 @@ const perguntas = [
         alternativas: [
             {
                 texto: "Aplicativos de controle financeiro (planilhas digitais, apps de orçamento).",
-                afirmacao: "Você acredita que registrar tudo em tempo real ajuda a manter as contas sob controle e evitar surpresas no fim do mês.",
+                afirmacao: [
+                    "Você acredita que registrar tudo em tempo real ajuda a manter as contas sob controle e evitar surpresas no fim do mês.",
+                    "afirmação 2",
+                    "afirmação 3"
+                ]
+
+
             },
             {
                 texto: "Anotações à mão em um caderno ou agenda física.",
-                afirmacao: "Você prefere o método tradicional porque sente que escrever reforça a consciência dos gastos.",
+                afirmacao: [
+                    "Você prefere o método tradicional porque sente que escrever reforça a consciência dos gastos.",
+                    "afirmação 2",
+                    "afirmação 3"
+                ]
             }
         ]
     },
@@ -24,11 +34,20 @@ const perguntas = [
         alternativas: [
             {
                 texto: " Guardar parte para uma reserva de emergência ou objetivo futuro.",
-                afirmacao: "Você vê esse recurso como uma oportunidade de fortalecer sua segurança financeira.",
+                afirmacao: [
+                    "Você vê esse recurso como uma oportunidade de fortalecer sua segurança financeira.",
+                    "afirmação 2",
+                    "afirmação 3"
+                ]
+
             },
             {
                 texto: "Usar imediatamente para pagar dívidas ou realizar algum desejo imediato.",
-                afirmacao: "Você prefere aplicar o valor onde ele trará alívio imediato ou satisfação pessoal.",
+                afirmacao: [
+                    "Você prefere aplicar o valor onde ele trará alívio imediato ou satisfação pessoal.",
+                    "afirmação 2",
+                    "afirmação 3"
+                ]
             }
         ]
     },
@@ -37,11 +56,19 @@ const perguntas = [
         alternativas: [
             {
                 texto: "Definir um percentual fixo da renda (ex.: 15 % do salário).",
-                afirmacao: "Você acredita que reservar uma porcentagem constante facilita o controle e cria o hábito de economizar.",
+                afirmacao: [
+                    "Você acredita que reservar uma porcentagem constante facilita o controle e cria o hábito de economizar.",
+                    "afirmação 2",
+                    "afirmação 3"
+                ]
             },
             {
                 texto: "Avaliar as despesas do mês e poupar o que sobrar depois de pagar tudo.",
-                afirmacao: "Você prefere adaptar a poupança à realidade de cada período, ajustando‑se às variações de gasto.",
+                afirmacao: [
+                    "Você prefere adaptar a poupança à realidade de cada período, ajustando‑se às variações de gasto.",
+                    "afirmação 2",
+                    "afirmação 3"
+                    ]
             }
         ]
     },
@@ -50,11 +77,19 @@ const perguntas = [
         alternativas: [
             {
                 texto: "Pagar a fatura integralmente no vencimento para evitar juros.",
-                afirmacao: "Você prioriza manter o custo do crédito zero, mesmo que isso signifique usar parte da reserva de emergência.",
+                afirmacao: [
+                    "Você prioriza manter o custo do crédito zero, mesmo que isso signifique usar parte da reserva de emergência.",
+                    "afirmação 2",
+                    "afirmação 3"
+                    ]
             },
             {
                 texto: "Aproveitar o parcelamento e pagar apenas o mínimo, usando o dinheiro para outras necessidades imediatas.",
-                afirmacao: "Você valoriza a flexibilidade de fluxo de caixa, aceitando pagar juros futuros para resolver prioridades atuais.",
+                afirmacao: [
+                    "Você valoriza a flexibilidade de fluxo de caixa, aceitando pagar juros futuros para resolver prioridades atuais.",
+                    "afirmação 2",
+                    "afirmação 3"
+                ]
             }
         ]
     },
@@ -63,11 +98,19 @@ const perguntas = [
         alternativas: [
             {
                 texto: "Criar “limites de despesa” por categoria (lazer, delivery, roupas) em um aplicativo de orçamento.",
-                afirmacao: "Você sente que limites pré‑definidos evitam surpresas e mantêm o orçamento equilibrado.",
+                afirmacao: [
+                    "Você sente que limites pré‑definidos evitam surpresas e mantêm o orçamento equilibrado.",
+                    "afirmação 2",
+                    "afirmação 3"
+                ]
             },
             {
                 texto: "Esperar 24 horas antes de fazer uma compra não planejada e reavaliar a real necessidade.",
-                afirmacao: "Você acredita que o intervalo de tempo reduz compras impulsivas e ajuda a refletir sobre prioridades.",
+                afirmacao: [
+                    "Você acredita que o intervalo de tempo reduz compras impulsivas e ajuda a refletir sobre prioridades.",
+                    "afirmação 2",
+                    "afirmação 3"
+                    ]
             }
         ]
     },
@@ -77,12 +120,12 @@ let atual = 0;
 let perguntaAtual;
 let historiaFinal = " ";
 
-function mostraPergunta(){
+function mostraPergunta() {
 
-if (atual >= perguntas.length){
-    mostraResultado();
-    return;
-}
+    if (atual >= perguntas.length) {
+        mostraResultado();
+        return;
+    }
 
     perguntaAtual = perguntas[atual]
     caixaPerguntas.textContent = perguntaAtual.enunciado;
@@ -90,8 +133,8 @@ if (atual >= perguntas.length){
     mostraAlternativas();
 }
 
-function mostraAlternativas(){
-    for (const alternativa of perguntaAtual.alternativas){
+function mostraAlternativas() {
+    for (const alternativa of perguntaAtual.alternativas) {
         const botaoAlternativas = document.createElement("button");
         botaoAlternativas.textContent = alternativa.texto;
         botaoAlternativas.addEventListener("click", () => respostaSelecionada(alternativa));
@@ -99,14 +142,14 @@ function mostraAlternativas(){
     }
 }
 
-function respostaSelecionada(opcaoSelecionada){
+function respostaSelecionada(opcaoSelecionada) {
     const afirmacoes = opcaoSelecionada.afirmacao;
     historiaFinal += afirmacoes + " ";
     atual++;
     mostraPergunta();
 }
 
-function mostraResultado(){
+function mostraResultado() {
     caixaPerguntas.textContent = "Se fosse possível manter suas contas sob controle, o resultado final poderá valer a pena?";
     textoResultado.textContent = historiaFinal;
     caixaAlternativas.textContent = " ";
